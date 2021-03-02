@@ -25,7 +25,7 @@ SECRET_KEY = '4$4g-=*@_#6%3qous9$+(ocnbp6chfcr*i_)3vd)&3cbs8*ci^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["https://appto13.herokuapp.com/","127.0.0.1"]
 
 
 # Application definition
