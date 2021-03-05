@@ -18,7 +18,7 @@ class User(AbstractUser):
                               error_messages={
                                   'unique': "A user with that email already exists.",
                               })
-    phone_number = models.CharField(unique=True, blank=True, null=True, max_length=20,
+    phone_number = models.CharField(unique=True, blank=True, null=True, max_length=10,
                                     error_messages={
                                         'unique': "A user with that phone number already exists."
                                     })
