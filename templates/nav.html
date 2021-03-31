@@ -19,7 +19,7 @@
                 <nav class="classy-navbar justify-content-between" id="dentoNav">
 
                     <!-- Logo -->
-                    <a class="nav-brand" href="#">Appto
+                    <a class="nav-brand" href="{% url 'appointment:home' %}">Appto
                     </a>
 
                     <!-- Navbar Toggler -->
@@ -41,7 +41,10 @@
 
                             <ul id="nav">
 
-                                <li><a href="#">Home</a></li>
+                                <li><a href="{% url 'appointment:home' %}">Home</a></li>
+
+
+                                <li><a href="{% url 'appointment:service' %}">Services</a></li>
 
 
                                 {% if request.user.is_authenticated and request.user.role == 'doctor' %}
@@ -49,14 +52,14 @@
                                     <li>
                                         <a href="">
                                             <span class="glyphicon glyphicon-user">
-                                                {{ request.user.first_name }}
+                                                    {{ request.user.first_name }}
                                             </span>
                                         </a>
                                         <ul class="dropdown">
                                             <li><a href="#"> EDIT PROFILE</a></li>
-                                            <li><a href="#"> PATIENTS</a></li>
-                                            <li><a href="#">  APPOINTMENTS</a></li>
-                                            <li><a href="#"> CREATE APPOINTMENT</a></li>
+                                            <li><a href="{% url 'appointment:patient-list' %}"> PATIENTS</a></li>
+                                            <li><a href="{% url 'appointment:doctor-appointment' %}">  APPOINTMENTS</a></li>
+                                            <li><a href="{% url 'appointment:doctor-appointment-create' %}"> CREATE APPOINTMENT</a></li>
                                             <li><a href="{% url 'accounts:logout' %}"> LOGOUT</a></li>
 
                                         </ul>
@@ -67,7 +70,7 @@
                                     <li>
                                         <a href="">
                                             <span class="glyphicon glyphicon-user">
-                                                {{ request.user.first_name }}
+                                                    {{ request.user.first_name }}
                                             </span>
                                         </a>
                                         <ul class="dropdown">

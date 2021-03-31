@@ -23,7 +23,7 @@
 
                 <div class="welcome-btn-group">
 
-                    <form id="job-main-form" method="get" action="#" class="search-doctor-form">
+                    <form id="job-main-form" method="get" action="{% url 'appointment:search' %}" class="search-doctor-form">
                     <div class="row mb-5">
 
 
@@ -74,7 +74,7 @@
                 <h2 data-animation="fadeInDown" data-delay="100ms">We Believe Everyone Should Have Easy Access To Great Health Care</h2>
                 <div class="welcome-btn-group">
 
-                    <form id="job-main-form" method="get" action="#" class="search-doctor-form">
+                    <form id="job-main-form" method="get" action="{% url 'appointment:search' %}" class="search-doctor-form">
                     <div class="row mb-5">
 
 
@@ -146,7 +146,7 @@
                     <!-- Single Dentist Area -->
                     <div class="col-12 col-sm-6 col-md-4">
                         <div class="single-dentist-area mb-100">
-                            <img style="height: 500px; width: 600px" src="../media/doc-2.jpg" alt="">
+                            <img style="height: 500px; width: 600px" src="{{ apt.image.url }}" alt="">
                             <!-- Dentist Content -->
                             <div class="dentist-content">
                                 <!-- Social Info -->
@@ -156,34 +156,34 @@
                                 <!-- Dentist Info -->
                                 <div class="dentist-info bg-gradient-overlay">
                                     {% if request.user.is_authenticated and request.user.role == 'patient' %}
-                                        <h5>Kush Patel</h5>
-                                        <p>department Expert</p>
-                                        <p>MBBS, Ganpat University</p>
-                                        <p>Available 8:00 AM to 8:00 PM
+                                        <h5>{{ apt.full_name }}</h5>
+                                        <p>{{ apt.department }} Expert</p>
+                                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
+                                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
                                             in City hospital</p>
                                         <p>
-                                            AT Ahmedabad <i class="fa fa-th"></i>
-                                            <a href="#"> Take
+                                            AT {{ apt.location }} <i class="fa fa-th"></i>
+                                            <a href="{% url 'appointment:take-appointment' apt.id %}"> Take
                                                 Appointment</a>
 
                                         </p>
                                     {% elif request.user.is_authenticated and request.user.role == 'doctor'   %}
 
-                                        <h5>Kush Patel</h5>
-                                        <p>department Expert</p>
-                                        <p>MBBS, Ganpat University</p>
-                                        <p>Available 8:00 AM to 8:00 PM
-                                            in City hospital</p>
-                                        <p>AT Ahmedabad</p>
+                                        <h5>{{ apt.full_name }}</h5>
+                                        <p>{{ apt.department }} Expert</p>
+                                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
+                                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
+                                            in {{ apt.hospital_name }}</p>
+                                        <p>AT {{ apt.location }}</p>
 
                                         {% else %}
-                                         <h5>Kush Patel</h5>
-                                        <p>department Expert</p>
-                                        <p>MBBS, Ganpat University</p>
-                                        <p>Available 8:00 AM to 8:00 PM
-                                            in City hospital</p>
+                                         <h5>{{ apt.full_name }}</h5>
+                                        <p>{{ apt.department }} Expert</p>
+                                        <p>{{ apt.qualification_name }}, {{ apt.institute_name }}</p>
+                                        <p>Available {{ apt.start_time }} to {{ apt.end_time }}
+                                            in {{ apt.hospital_name }}</p>
                                         <p>
-                                            AT Ahmedabad </p>
+                                            AT {{ apt.location }} </p>
 
                                     {% endif %}
 
@@ -212,9 +212,7 @@
     </span>
                 </div>
 
-
             </div>
-
         </div>
     </section>
 
