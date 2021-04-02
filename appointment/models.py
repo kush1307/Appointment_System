@@ -14,11 +14,11 @@ department = (
     ('Physical Therapy', 'Physical Therapy'),
 )
 
-
 class Appointment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
-    image = models.ImageField(null=True, blank=True)
+    # image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(upload_to='doc_pro_pic', default='../media/doctor.jpg')
     location = models.CharField(max_length=100)
     start_time = models.CharField(max_length=10)
     end_time = models.CharField(max_length=10)

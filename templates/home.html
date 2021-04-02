@@ -145,8 +145,13 @@
                 {% for apt in home %}
                     <!-- Single Dentist Area -->
                     <div class="col-12 col-sm-6 col-md-4">
+
                         <div class="single-dentist-area mb-100">
-                            <img style="height: 500px; width: 600px" src="{{ apt.image.url }}" alt="">
+                            {% if apt.image %}
+                                <img style="height: 500px; width: 600px" src="{{ apt.image.url }}" alt="">
+                            {% else %}
+                                <img style="height: 500px; width: 600px" src="../kush.jpg" alt="">
+                            {% endif %}
                             <!-- Dentist Content -->
                             <div class="dentist-content">
                                 <!-- Social Info -->
@@ -190,7 +195,9 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 {% endfor %}
 
 
