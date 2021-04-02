@@ -90,10 +90,10 @@ WSGI_APPLICATION = 'doctor_appointment_system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'apptodb',
-        'USER': 'postgres',
-        'PASSWORD': 'kush1307',
-        'HOST': 'localhost'
+        'NAME': 'dchenke5javtsg',
+        'USER': 'rfanqtjsraavdb',
+        'PASSWORD': '5b6bbcf8b8f3d13bbb21fc7660525dda384e3c6387ac89af98f2f1a90955adde',
+        'HOST': 'ec2-54-166-242-77.compute-1.amazonaws.com'
     }
 }
 
