@@ -22,7 +22,6 @@ class User(AbstractUser):
                                     error_messages={
                                         'unique': "A user with that phone number already exists."
                                     })
-
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 

@@ -31,7 +31,9 @@ class RegisterPatientView(CreateView):
         if form.is_valid():
             user = form.save(commit=False)
             password = form.cleaned_data.get("password1")
+            # image = form.cleaned_data.get("image")
             user.set_password(password)
+            # user.objects.create(image=image)
             user.save()
             return redirect('accounts:login')
         else:

@@ -97,6 +97,7 @@ class DoctorRegistrationForm(UserCreationForm):
         self.fields['last_name'].label = "Last Name"
         self.fields['password1'].label = "Password"
         self.fields['password2'].label = "Confirm Password"
+        # self.fields['image'].label = "Certificate"
         for fieldname in ['password1', 'password2']:
             self.fields[fieldname].help_text = None
 
@@ -137,7 +138,7 @@ class DoctorRegistrationForm(UserCreationForm):
             'last_name': {
                 'required': 'Last name is required',
                 'max_length': 'Last Name is too long'
-            }
+            },
         }
 
     def save(self, commit=True):
