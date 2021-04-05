@@ -56,8 +56,9 @@
                                             </span>
                                         </a>
                                         <ul class="dropdown">
-                                            <li><a href="#"> EDIT PROFILE</a></li>
+                                            <li><a href="{% url 'appointment:edit-doctor' %}"> EDIT PROFILE</a></li>
                                             <li><a href="{% url 'appointment:patient-list' %}"> PATIENTS</a></li>
+                                            <li><a href="{% url 'appointment:give_prescription' %}"> PRESCRIPTION</a></li>
                                             <li><a href="{% url 'appointment:doctor-appointment' %}">  APPOINTMENTS</a></li>
                                             <li><a href="{% url 'appointment:doctor-appointment-create' %}"> CREATE APPOINTMENT</a></li>
                                             <li><a href="{% url 'accounts:logout' %}"> LOGOUT</a></li>
@@ -76,6 +77,7 @@
                                         <ul class="dropdown">
 
                                             <li><a href="#"> EDIT PROFILE</a></li>
+                                            <li><a href="{% url 'appointment:patient-prescription-list' %}"> SEE PRESCRIPTION</a></li>
                                             <li><a href="{% url 'accounts:logout' %}"> LOGOUT</a></li>
 
                                         </ul>

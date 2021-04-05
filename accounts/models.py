@@ -22,6 +22,7 @@ class User(AbstractUser):
                                     error_messages={
                                         'unique': "A user with that phone number already exists."
                                     })
+    # image = models.ImageField(upload_to='deoc_certi')
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 

@@ -10,8 +10,8 @@ from .decorators import user_is_patient, user_is_doctor
 from django.views.generic import TemplateView, UpdateView, CreateView, ListView, DetailView, DeleteView
 from django.views.generic.edit import DeleteView, UpdateView
 from accounts.forms import PatientProfileUpdateForm, DoctorProfileUpdateForm
-from .forms import CreateAppointmentForm, TakeAppointmentForm
-from .models import Appointment, TakeAppointment
+from .forms import CreateAppointmentForm, TakeAppointmentForm, PrescriptionForm
+from .models import Appointment, TakeAppointment, PatientPrescription
 
 """
 For Patient Profile
@@ -74,6 +74,44 @@ class TakeAppointmentView(CreateView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+
+class GivePrescriptionView(CreateView):
+    template_name = 'appointment/give_prescription.html'
+    form_class = PrescriptionForm
+    extra_context = {
+        'title': 'Give Prescription'
+    }
+    success_url = reverse_lazy('appointment:home')
+
+    @method_decorator(login_required(login_url=reverse_lazy('accounts:login')))
+    def dispatch(self, request, *args, **kwargs):
+        if not self.request.user.is_authenticated:
+            return reverse_lazy('accounts:login')
+        if self.request.user.is_authenticated and self.request.user.role != 'doctor':
+            return reverse_lazy('accounts:login')
+        return super().dispatch(self.request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(GivePrescriptionView, self).form_valid(form)
+
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+
+class PatientPrescriptionListView(ListView):
+    model = PatientPrescription
+    context_object_name = 'prescriptions'
+    template_name = "appointment/prescription_list.html"
+
+    def get_queryset(self):
+        return self.model.objects.filter(appointment__user_id=self.request.user.id).order_by('-id')
 
 
 """

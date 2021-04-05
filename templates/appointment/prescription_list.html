@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Prescription List{% endblock %}
+
+{% block content %}
+    <section class="dentist-area section-padding-50-0">
+
+        <div class="container" style="align-items: center; justify-content: center;display: flex;">
+            <div class="col-12 col-sm-6 col-md-4">
+
+{#                <h3 style="align-items: center;justify-content: center;display: flex"> {{ request.user.first_name }} has {{ patients.count }}#}
+{#                    Patient/s</h3>#}
+
+                </br >
+                </br >
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="dentist-area section-padding-30-0">
+
+        <div class="container">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Doctor Name</th>
+                    <th scope="col">Message</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+
+                {% for pres in prescriptions %}
+                    <tr>
+
+                        <td>{{ pres.full_name }}</td>
+                        <td> {{ pres.pres_message }}</td>
+
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+            </table>
+        </div>
+    </section>
+
+{% endblock %}

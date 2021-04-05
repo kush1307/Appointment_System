@@ -49,6 +49,12 @@
                             <a href="{% url 'appointment:delete-patient' patient.id %}">
                                 <span class="glyphicon glyphicon-trash"></span>
                             </a>
+
+                            <a href="{% url 'appointment:delete-patient' patient.id %}">
+                                <span class="glyphicon glyphicon-edit"></span>Prescribe
+                            </a>
+
+
                         </td>
                     </tr>
                 {% endfor %}

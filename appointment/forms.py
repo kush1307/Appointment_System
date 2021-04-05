@@ -1,5 +1,5 @@
 from django import forms
-from .models import Appointment, TakeAppointment
+from .models import Appointment, TakeAppointment, PatientPrescription
 
 
 class CreateAppointmentForm(forms.ModelForm):
@@ -127,3 +127,47 @@ class TakeAppointmentForm(forms.ModelForm):
         if commit:
             appointment.save()
         return appointment
+
+
+class PrescriptionForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(PrescriptionForm, self).__init__(*args, **kwargs)
+        self.fields['appointment'].label = "Choose Your Patient"
+        self.fields['full_name'].label = "Full Name"
+        self.fields['pres_message'].label = "Pres Message"
+
+        self.fields['appointment'].widget.attrs.update(
+            {
+                'placeholder': 'Choose Your Patient',
+            }
+        )
+
+        self.fields['full_name'].widget.attrs.update(
+            {
+                'placeholder': 'Write Your Name',
+            }
+        )
+
+        self.fields['pres_message'].widget.attrs.update(
+            {
+                'placeholder': 'Provide a prescription message',
+            }
+        )
+
+    class Meta:
+        model = PatientPrescription
+        fields = ['appointment', 'full_name', 'pres_message']
+
+    def is_valid(self):
+        valid = super(PrescriptionForm, self).is_valid()
+
+        # if already valid, then return True
+        if valid:
+            return valid
+        return valid
+
+    def save(self, commit=True):
+        prescription = super(PrescriptionForm, self).save(commit=False)
+        if commit:
+            prescription.save()
+        return prescription
