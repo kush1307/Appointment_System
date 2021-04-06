@@ -14,6 +14,10 @@
 
                     <form action="" method="POST" >{% csrf_token %}
 
+                        <div class="form-group">
+                            <label for="doctor">Doctor</label>
+                            <input type="text" name="doctor" class="form-control" value="{{ request.user.first_name }} {{ request.user.last_name }}" disabled>
+                        </div>
                         {{ form|bootstrap }}
 
                         <div class="row form-group">

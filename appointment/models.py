@@ -50,7 +50,8 @@ class TakeAppointment(models.Model):
 class PatientPrescription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     appointment = models.ForeignKey(TakeAppointment, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=100)
+    # full_name = models.CharField(max_length=100)
+    full_name = models.ForeignKey(Appointment, on_delete=models.CASCADE)
     pres_message = models.TextField()
 
     def __str__(self):

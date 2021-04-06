@@ -1,6 +1,6 @@
 from django import forms
 from .models import Appointment, TakeAppointment, PatientPrescription
-
+from accounts.models import User
 
 class CreateAppointmentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
