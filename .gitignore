@@ -1,5 +1,5 @@
 venv/
 .idea/dataSources/
 identifier.sqlite
-db.sqlite3
-apptodb
+db.sqlite3/
+apptodb/
