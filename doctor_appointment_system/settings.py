@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import sys
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -81,21 +83,47 @@ WSGI_APPLICATION = 'doctor_appointment_system.wsgi.application'
 
 # Sqlite
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
+#      'default': {
+#          'ENGINE': 'django.db.backends.sqlite3',
+#          'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#      },
+# 'TEST': {
+#         'NAME':'de5kgn369pgtud',
+# },
 # }
+if 'test' in sys.argv:
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dchenke5javtsg',
-        'USER': 'rfanqtjsraavdb',
-        'PASSWORD': '5b6bbcf8b8f3d13bbb21fc7660525dda384e3c6387ac89af98f2f1a90955adde',
-        'HOST': 'ec2-54-166-242-77.compute-1.amazonaws.com'
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'de5kgn369pgtud',
+            'USER': 'cjnxgboyvnoxzt',
+            'PASSWORD': '33641acbb6fe92156ab429b9e734f89af4794e6ea8ccbd5b6c3d6467b23e4933',
+            'HOST': 'ec2-18-206-20-102.compute-1.amazonaws.com',
+            'PORT' : 5432,
+            'TEST': {
+
+                'NAME':'de5kgn369pgtud',
+            },
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'dchenke5javtsg',
+            'USER': 'rfanqtjsraavdb',
+            'PASSWORD': '5b6bbcf8b8f3d13bbb21fc7660525dda384e3c6387ac89af98f2f1a90955adde',
+            'HOST': 'ec2-54-166-242-77.compute-1.amazonaws.com',
+            'PORT' : 5432,
+            'TEST': {
+
+                'NAME':'dchenke5javtsg',
+            },
+        }
+    }
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

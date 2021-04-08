@@ -15,7 +15,7 @@ department = (
 )
 
 class Appointment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,null=True,blank=True, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
     # image = models.ImageField(null=True, blank=True)
     image = models.ImageField(upload_to='doc_pro_pic', default='../media/doctor.jpg')
@@ -36,12 +36,12 @@ class Appointment(models.Model):
 
 
 class TakeAppointment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE)
+    user = models.ForeignKey(User,null=True,blank=True, on_delete=models.CASCADE)
+    appointment = models.ForeignKey(Appointment,null=True,blank=True, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=100)
     message = models.TextField()
     phone_number = models.CharField(max_length=120)
-    date = models.DateTimeField(default=timezone.now)
+    date = models.DateTimeField(default=timezone.now,null=True)
 
     def __str__(self):
         return self.full_name
