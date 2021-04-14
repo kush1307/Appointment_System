@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: |
+          git fetch --prune --unshallow
+#          unshallow error
       - name: Setup Python 3.7
         uses: actions/setup-python@v2
         with:
@@ -29,9 +32,14 @@ jobs:
           HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
         if: job.status == 'success'
         run: |
-          git fetch --unshallow origin
           git remote add heroku https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git
           git push -u heroku master
+
+
+#
+#          $ heroku plugins:install heroku-builds
+#          $ heroku builds:cancel
+#          $ heroku restart
 
 #      - name: Deploy to Heroku
 #        env:
