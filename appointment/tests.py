@@ -25,4 +25,4 @@ class URLTests(TestCase):
         self.assertEqual(response_home.status_code,200)
     def test_testservciepage(self):
         response_service = self.client.get('/service')
-        self.assertEqual(response_service.status_code,404)
+        self.assertEqual(response_service.status_code,200)
