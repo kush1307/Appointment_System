@@ -26,3 +26,4 @@ class URLTests(TestCase):
     def test_testservciepage(self):
         response_service = self.client.get('/service')
         self.assertEqual(response_service.status_code,200)
+# comment unshallow
