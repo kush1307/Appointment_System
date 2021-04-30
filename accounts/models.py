@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from accounts.managers import UserManager
-#comment added
+#comment removed
 GENDER_CHOICES = (
     ('male', 'Male'),
     ('female', 'Female'))
